@@ -153,6 +153,7 @@ def calc_pnl_usd(item, current_price, ccl):
 
 def calc_invested_usd(item, ccl):
     shares = calc_shares(item)
+    if shares == 0:
     if item["currency"] == "USD":
         return round(item["entry"] * shares, 2)
     else:
