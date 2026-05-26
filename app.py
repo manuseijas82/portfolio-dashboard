@@ -135,12 +135,11 @@ def get_price(yticker):
         return None
 
 def calc_shares(item):
-    cedears = item.get("cedears",0)
-    ratio   = item.get("ratio",1)
+    cedears = item.get("cedears", 0)
+    ratio   = item.get("ratio", 1)
     if not cedears or not ratio:
         return 0
     return cedears / ratio
-    
 
 def calc_pnl_usd(item, current_price, ccl):
     shares = calc_shares(item)
@@ -156,6 +155,7 @@ def calc_pnl_usd(item, current_price, ccl):
 def calc_invested_usd(item, ccl):
     shares = calc_shares(item)
     if shares == 0:
+        return None
     if item["currency"] == "USD":
         return round(item["entry"] * shares, 2)
     else:
@@ -163,16 +163,24 @@ def calc_invested_usd(item, ccl):
             return round((item["entry"] / ccl) * shares, 2)
         return None
 
-def fmt_usd(n):  return f"${n:,.2f}"
-def fmt_ars(n):  return f"${n:,.0f}"
+def fmt_usd(n):
+    return f"${n:,.2f}"
+
+def fmt_ars(n):
+    return f"${n:,.0f}"
+
 def fmt_pnl(n):
-    if n is None: return "—"
+    if n is None:
+        return "—"
     sign = "+" if n >= 0 else ""
     return f"{sign}${n:,.2f}"
 
 def do_close_position(ticker, close_price, ccl):
-    item = next((x for x in st.session_state.active_portfolio if x["ticker"] == ticker), None)
-    if not item: return
+    item = next(
+        (x for x in st.session_state.active_portfolio if x["ticker"] == ticker), None
+    )
+    if not item:
+        return
     shares  = calc_shares(item)
     pct     = round(((close_price - item["entry"]) / item["entry"]) * 100, 2)
     if item["currency"] == "USD":
@@ -253,7 +261,7 @@ with c4: st.metric("📈 P&L Total USD",
 with c5: st.metric("🟢 En Ganancia",       len(ups))
 with c6: st.metric("🔴 En Pérdida",        len(downs))
 with c7:
-    if best:  st.metric("🏆 Mejor", best["ticker"], f"+{best['pct']:.1f}%")
+    if best: st.metric("🏆 Mejor", best["ticker"], f"+{best['pct']:.1f}%")
 
 st.divider()
 
@@ -268,7 +276,8 @@ with tab1:
             x=df["pct"], y=df["ticker"], orientation="h",
             marker_color=colors,
             text=[f"+{p:.1f}%" if p >= 0 else f"{p:.1f}%" for p in df["pct"]],
-            textposition="outside", textfont=dict(color="white", size=12),
+            textposition="outside",
+            textfont=dict(color="white", size=12),
         ))
         fig.update_layout(
             paper_bgcolor="#0a0a0f", plot_bgcolor="#161b22",
@@ -291,7 +300,8 @@ with tab2:
             x=df2["pnl_usd"], y=df2["ticker"], orientation="h",
             marker_color=colors2,
             text=[f"+${p:,.0f}" if p >= 0 else f"-${abs(p):,.0f}" for p in df2["pnl_usd"]],
-            textposition="outside", textfont=dict(color="white", size=12),
+            textposition="outside",
+            textfont=dict(color="white", size=12),
         ))
         fig2.update_layout(
             paper_bgcolor="#0a0a0f", plot_bgcolor="#161b22",
@@ -317,12 +327,12 @@ for row in rows:
     cols = st.columns(cols_per_row)
     for col, item in zip(cols, row):
         with col:
-            price   = item["price"]
-            pct     = item["pct"]
-            pnl     = item["pnl_usd"]
-            shares  = item["shares"]
-            is_up   = pct is not None and pct >= 0
-            ticker  = item["ticker"]
+            price  = item["price"]
+            pct    = item["pct"]
+            pnl    = item["pnl_usd"]
+            shares = item["shares"]
+            is_up  = pct is not None and pct >= 0
+            ticker = item["ticker"]
 
             if item["currency"] == "ARS":
                 entry_fmt = fmt_ars(item["entry"])
@@ -344,7 +354,7 @@ for row in rows:
                 f"+{pct:.2f}%" if (pct is not None and is_up)
                 else (f"{pct:.2f}%" if pct is not None else "—")
             )
-            pnl_text  = fmt_pnl(pnl)
+            pnl_text = fmt_pnl(pnl)
 
             st.markdown(f"""
             <div class="card {card_cls}">
@@ -428,8 +438,8 @@ else:
                 is_up   = pct >= 0
                 arrow   = "▲" if is_up else "▼"
                 pct_cls = "pct-closed-up"  if is_up else "pct-closed-down"
-                pnl_cls = "pnl-up"         if (pnl is not None and pnl >= 0) else "pnl-down"
-                pct_text = f"+{pct:.2f}%"  if is_up else f"{pct:.2f}%"
+                pnl_cls = "pnl-up" if (pnl is not None and pnl >= 0) else "pnl-down"
+                pct_text = f"+{pct:.2f}%" if is_up else f"{pct:.2f}%"
                 pnl_text = fmt_pnl(pnl)
 
                 if item["currency"] == "ARS":
@@ -468,7 +478,9 @@ else:
                         <span class="{pct_cls}">{arrow} {pct_text}</span>
                     </div>
                     <div style="margin-top:8px;">
-                        <span style="font-size:0.7rem; color:#8b949e;">📅 {item.get('close_date','—')}</span>
+                        <span style="font-size:0.7rem; color:#8b949e;">
+                            📅 {item.get('close_date','—')}
+                        </span>
                     </div>
                 </div>
                 """, unsafe_allow_html=True)
