@@ -135,7 +135,12 @@ def get_price(yticker):
         return None
 
 def calc_shares(item):
-    return item["cedears"] / item["ratio"]
+    cedears = item.get("cedears",0)
+    ratio   = item.get("ratio",1)
+    if not cedears or not ratio:
+        return 0
+    return cedears / ratio
+    
 
 def calc_pnl_usd(item, current_price, ccl):
     shares = calc_shares(item)
