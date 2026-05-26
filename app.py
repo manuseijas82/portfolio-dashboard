@@ -144,6 +144,8 @@ def calc_shares(item):
 
 def calc_pnl_usd(item, current_price, ccl):
     shares = calc_shares(item)
+    if shares == 0:
+        return None
     if item["currency"] == "USD":
         return round((current_price - item["entry"]) * shares, 2)
     else:
