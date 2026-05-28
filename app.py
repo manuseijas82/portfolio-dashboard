@@ -75,7 +75,7 @@ PORTFOLIO = [
     {"ticker": "NU",   "entry": 14.75,   "currency": "USD", "yTicker": "NU",    "cedears": 196, "ratio": 2},
     {"ticker": "MELI", "entry": 1677.38, "currency": "USD", "yTicker": "MELI",  "cedears": 95,  "ratio": 120},
     {"ticker": "MSFT", "entry": 405.00,  "currency": "USD", "yTicker": "MSFT",  "cedears": 106, "ratio": 30},
-    {"ticker": "V",    "entry": 303.90,  "currency": "USD", "yTicker": "V",     "cedears": 123, "ratio": 18},
+    {"ticker": "V",    "entry": 303.90,  "currency": "USD", "yTicker": "V",     "cedears": 23, "ratio": 18},
     {"ticker": "UL",   "entry": 28800,   "currency": "ARS", "yTicker": "UL.BA", "cedears": 20,  "ratio": 3},
     {"ticker": "JNJ",  "entry": 238.56,  "currency": "USD", "yTicker": "JNJ",   "cedears": 25,  "ratio": 15},
     {"ticker": "VST",  "entry": 146.67,  "currency": "USD", "yTicker": "VST",   "cedears": 66,  "ratio": 3},
