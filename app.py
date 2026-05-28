@@ -96,8 +96,8 @@ CLOSED_INITIAL = [
         "currency":    "USD",
         "cedears":     0,
         "ratio":       3,
-        "pct":         round(((78.15 - 69.45) / 69.45) * 100, 2),
-        "pnl_usd":     None,
+        "pct":         round(((78.80 - 69.45) / 69.45) * 100, 2),
+        "pnl_usd":     round(((78.80 - 69.45) * (15 / 3)), 2),
         "close_date":  "Manual",
     }
 ]
