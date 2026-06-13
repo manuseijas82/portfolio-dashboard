@@ -85,9 +85,9 @@ PORTFOLIO = [
     {"ticker": "MMM",  "entry": 153.54,  "currency": "USD", "yTicker": "MMM",   "cedears": 31,  "ratio": 10},
     {"ticker": "META", "entry": 609.19,  "currency": "USD", "yTicker": "META",  "cedears": 15,  "ratio": 24},
     {"ticker": "UBER", "entry": 70.44,   "currency": "USD", "yTicker": "UBER",  "cedears": 13,  "ratio": 2},
-    {"ticker": "AXP", "entry": 312.77,   "currency": "USD", "yTicker": "AXP",  "cedears": 16,  "ratio": 15}
-    {"ticker": "RTX", "entry": 181.28,   "currency": "USD", "yTicker": "RTX",  "cedears": 9,  "ratio": 5}
-    {"ticker": "XP", "entry": 14.89,   "currency": "USD", "yTicker": "XP",  "cedears": 76,  "ratio": 4}
+    {"ticker": "AXP", "entry": 312.77,   "currency": "USD", "yTicker": "AXP",  "cedears": 16,  "ratio": 15},
+    {"ticker": "RTX", "entry": 181.28,   "currency": "USD", "yTicker": "RTX",  "cedears": 9,  "ratio": 5},
+    {"ticker": "XP", "entry": 14.89,   "currency": "USD", "yTicker": "XP",  "cedears": 76,  "ratio": 4},
 ]
 
 # ── POSICION CERRADA INICIAL ──────────────────────────────────────────────────
